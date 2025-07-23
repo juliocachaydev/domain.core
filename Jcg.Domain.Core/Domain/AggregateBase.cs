@@ -33,4 +33,5 @@ namespace Jcg.Domain.Core.Domain
         /// </summary>
         public abstract void AssertEntityStateIsValid();
     }
+    
 }

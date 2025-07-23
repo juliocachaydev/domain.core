@@ -1,7 +1,17 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1a1e93d6_002Df327_002D4d2d_002Dab12_002D88f865f9903d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="IRepositorTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=186d6dc9_002Dc0c1_002D45e1_002Da8be_002Df36dd3d05d60/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DomainCoreTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::BFEEDD4C-55E9-41DE-9CAA-5F896F0AC15F::net9.0::Jcg.Domain.Core.Tests.DomainCoreTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1a1e93d6_002Df327_002D4d2d_002Dab12_002D88f865f9903d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="IRepositorTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::BFEEDD4C-55E9-41DE-9CAA-5F896F0AC15F::net9.0::Jcg.Domain.Core.Tests.Repository.IRepositorTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6d4bdfb8_002Dd92c_002D498f_002D8ca8_002D6e0e7ae0c136/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DomainCoreTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::BFEEDD4C-55E9-41DE-9CAA-5F896F0AC15F::net9.0::Jcg.Domain.Core.Tests.DomainCoreTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8a7573dd_002De523_002D442f_002D9be4_002Dd67d3e1a718d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="RepositoryStrategyCollectionTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;

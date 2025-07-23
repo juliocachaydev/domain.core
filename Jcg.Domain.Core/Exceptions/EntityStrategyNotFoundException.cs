@@ -13,4 +13,6 @@ namespace Jcg.Domain.Core.Exceptions
 
         }
     }
+    
+   
 }

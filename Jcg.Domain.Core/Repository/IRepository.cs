@@ -52,6 +52,7 @@ namespace Jcg.Domain.Core.Repository
             {
                 _databaseAdapter = databaseAdapter;
                 _strategyCollection = strategyCollection;
+                _strategyCollection.ScanForStrategies(entityFactoryAdapter);
                 _dispatcher = dispatcher;
                 _entityFactoryAdapter = entityFactoryAdapter;
             }
@@ -116,8 +117,10 @@ namespace Jcg.Domain.Core.Repository
                     var domainEvents = e.DomainEvents.ToList();
                     foreach (var domainEvent in domainEvents)
                     {
-                        await _dispatcher.DispatchAsync(domainEvent);
+                        // We need to remove the domain event because if a domain event handlers calls commit on the repository again, we will run into an infinite loop.
                         e.RemoveDomainEvent(domainEvent);
+                        await _dispatcher.DispatchAsync(domainEvent);
+                        
                     }
                 }
                 foreach (var e in aggregates)

@@ -1,8 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <PackageId>Jcg.Domain.Core</PackageId>
         <TargetFramework>netstandard2.1</TargetFramework>
         <Nullable>enable</Nullable>
+        <Version>1.0.2</Version>
+        <Authors>Julio Cachay G.</Authors>
+        <Company>Julio Cachay Developer</Company>
+        <Description>A C# library that abstracts a Domain layer: An aggregate, a Repository, a domain event dispatcher and more.</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/juliocachaydev/domain.core/wiki/1.-Home</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/juliocachaydev/domain.core</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>domain;ddd;repository;aggregate;domain-events;open-source</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Copyright>Copyright © 2025 Julio Cachay G.</Copyright>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <IncludeXmlDocumentation>true</IncludeXmlDocumentation>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     </PropertyGroup>
 
 </Project>

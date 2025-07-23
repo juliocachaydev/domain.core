@@ -12,19 +12,14 @@ namespace Jcg.Domain.Core.LibrarySupport
     /// </summary>
     public class RepositoryStrategyCollection
     {
+        private readonly Assembly[] _assembliesToScan;
+
         // Key is the entity type, value is the strategy type
         private Dictionary<Type, Type> _strategies = new Dictionary<Type, Type>();
 
-        
-        private Type GetStrategyTypeOrThrow(Type entityType)
+        public RepositoryStrategyCollection(Assembly[] assembliesToScan)
         {
-            if (_strategies.TryGetValue(entityType, out var strategyType))
-            {
-                return strategyType;
-            }
-
-            throw new EntityStrategyNotFoundException(entityType);
-
+            _assembliesToScan = assembliesToScan;
         }
 
         /// <summary>
@@ -35,11 +30,17 @@ namespace Jcg.Domain.Core.LibrarySupport
         /// (see Types array), to read that property this library must create an instance of that implementation</param>
         /// <param name="assembliesToScan"></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void ScanForStrategies(IEntityFactoryAdapter factory, Assembly[] assembliesToScan)
+        public void ScanForStrategies(IEntityFactoryAdapter factory)
         {
-            var types = assembliesToScan.SelectMany(x=> x.GetTypes())
-                .Where(x => typeof(IEntityStrategy).IsAssignableFrom(x))
-                .Where(x=> x.IsClass);
+            if (_strategies.Any())
+            {
+                return;
+            }
+
+            var types = _assembliesToScan.SelectMany(x => x.GetTypes())
+                .Where(x => x.IsClass && x.GetInterfaces().Any())
+                .Where(x => x.GetInterfaces().Contains(typeof(IEntityStrategy)))
+                .ToArray();
 
             foreach (var t in types)
             {
