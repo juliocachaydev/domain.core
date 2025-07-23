@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jcg.Domain.Core", "Jcg.Doma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jcg.Domain.Core.Tests", "..\Jcg.Domain.Core.Tests\Jcg.Domain.Core.Tests.csproj", "{BFEEDD4C-55E9-41DE-9CAA-5F896F0AC15F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jcg.Domain.Core.Microsoft.DependencyInjection", "Jcg.Domain.Core.Microsoft.DependencyInjection\Jcg.Domain.Core.Microsoft.DependencyInjection.csproj", "{FFAE7D25-1350-4C3C-A5FF-D68363DF6B7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{BFEEDD4C-55E9-41DE-9CAA-5F896F0AC15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFEEDD4C-55E9-41DE-9CAA-5F896F0AC15F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFEEDD4C-55E9-41DE-9CAA-5F896F0AC15F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFAE7D25-1350-4C3C-A5FF-D68363DF6B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFAE7D25-1350-4C3C-A5FF-D68363DF6B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFAE7D25-1350-4C3C-A5FF-D68363DF6B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFAE7D25-1350-4C3C-A5FF-D68363DF6B7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
