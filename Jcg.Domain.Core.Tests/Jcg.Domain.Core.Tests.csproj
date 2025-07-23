@@ -25,7 +25,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Jcg.Domain.Core.Microsoft.DependencyInjection\Jcg.Domain.Core.Microsoft.DependencyInjection.csproj" />
+      <ProjectReference Include="..\Jcg.Domain.Core\Jcg.Domain.Core.csproj" />
     </ItemGroup>
+
 
 </Project>
