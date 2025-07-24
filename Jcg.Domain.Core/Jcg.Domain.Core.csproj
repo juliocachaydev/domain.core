@@ -2,9 +2,9 @@
 
     <PropertyGroup>
         <PackageId>Jcg.Domain.Core</PackageId>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <Version>1.0.6</Version>
+        <Version>1.0.7</Version>
         <Authors>Julio Cachay G.</Authors>
         <Company>Julio Cachay Developer</Company>
         <Description>A C# library that abstracts a Domain layer: An aggregate, a Repository, a domain event dispatcher and more.</Description>

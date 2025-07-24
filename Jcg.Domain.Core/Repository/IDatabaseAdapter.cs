@@ -11,7 +11,7 @@ namespace Jcg.Domain.Core.Repository
         /// <summary>
         /// Gets tracked entities.
         /// </summary>
-        ICollection<object> GetTrackEntities();
+        ICollection<object> GetTrackedEntities();
 
         /// <summary>
         /// commits tracked changes in a single transaction.

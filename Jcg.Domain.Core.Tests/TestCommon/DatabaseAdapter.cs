@@ -12,7 +12,7 @@ public class DatabaseAdapter : IDatabaseAdapter
     {
         _db = db;
     }
-    public ICollection<object> GetTrackEntities()
+    public ICollection<object> GetTrackedEntities()
     {
         return _db.ChangeTracker.Entries().Select(e => e.Entity)
             .Where(e => e != null)

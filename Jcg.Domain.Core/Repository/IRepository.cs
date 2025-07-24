@@ -107,7 +107,7 @@ namespace Jcg.Domain.Core.Repository
             public async Task CommitChanges()
             {
                 // For aggregates, we dispatch domain events, and then assert invariants.
-                var aggregates = _databaseAdapter.GetTrackEntities()
+                var aggregates = _databaseAdapter.GetTrackedEntities()
                     .Where(e => e is AggregateBase)
                     .Cast<AggregateBase>()
                     .ToArray();
