@@ -6,7 +6,7 @@ MIT
 
 ## Dependencies
 - Net Standard 2.1
-- Microsoft.Extensions.DependencyInjection.Abstractions 9.0.7
+- Microsoft.Extensions.DependencyInjection.Abstractions 9.0.0
 
 The reason I split the project this way is to easily add support for other .NET versions without needing to update the core project. The NuGet package exposes the .NET 9 project. You can certainly reimplement the DependencyInjection extension method in your code and use the core project.
 
