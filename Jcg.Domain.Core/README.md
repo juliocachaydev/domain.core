@@ -13,6 +13,8 @@ After several years of writing domain layers for different apps, I developed a s
 More on the [Wiki](https://github.com/juliocachaydev/domain.core/wiki)
 ## Credits
 
+Author: Julio C. Cachay. Chattanooga, TN, USA.
+
 This library and its documentation reference several established software engineering concepts and design patterns, including:
 
 - Repository, Strategy, and Unit of Work patterns, popularized by the "Gang of Four" (Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides) in their book _Design Patterns: Elements of Reusable Object-Oriented Software_.
