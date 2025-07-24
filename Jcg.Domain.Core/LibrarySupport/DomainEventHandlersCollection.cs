@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Jcg.Domain.Core.Dispatcher;
 using Jcg.Domain.Core.Domain;
-using Jcg.Domain.Core.Exceptions;
-using Jcg.Domain.Core.LibrarySupport;
-using Jcg.Domain.Core.Repository;
 
-namespace Jcg.Domain.Core.Dispatcher
+namespace Jcg.Domain.Core.LibrarySupport
 {
     internal class DomainEventHandlersCollection : IDomainEventHandlersCollection
     {

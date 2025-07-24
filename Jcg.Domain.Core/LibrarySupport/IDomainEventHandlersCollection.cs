@@ -1,7 +1,6 @@
 ﻿using Jcg.Domain.Core.Domain;
-using Jcg.Domain.Core.LibrarySupport;
 
-namespace Jcg.Domain.Core.Dispatcher
+namespace Jcg.Domain.Core.LibrarySupport
 {
     public interface IDomainEventHandlersCollection
     {

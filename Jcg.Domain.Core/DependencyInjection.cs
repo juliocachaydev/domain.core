@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 using Jcg.Domain.Core.Dispatcher;
@@ -7,7 +6,7 @@ using Jcg.Domain.Core.LibrarySupport;
 using Jcg.Domain.Core.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Jcg.Domain.Core.Microsoft.DependencyInjection
+namespace Jcg.Domain.Core
 {
     public static class DependencyInjection
     {

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Jcg.Domain.Core.Microsoft.DependencyInjection;
 using Jcg.Domain.Core.Tests.Persistence;
 using Jcg.Domain.Core.Tests.TestCommon;
 using Microsoft.Data.Sqlite;

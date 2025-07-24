@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Jcg.Domain.Core.LibrarySupport;
 
 namespace Jcg.Domain.Core.Dispatcher
 {
