@@ -4,7 +4,12 @@
     &lt;TestId&gt;xUnit::53EBACD7-D62A-480A-9F12-D3DECE614400::net9.0::Jcg.Domain.Core.Tests.ValueObjects.EntityIdentityTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=834778c5_002D86c2_002D4870_002D8a97_002Dacd3a7776c74/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PositiveIntegerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=78b7fb3f_002D9d84_002D43bf_002Db063_002D9c112e0f111c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="IntervalTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::53EBACD7-D62A-480A-9F12-D3DECE614400::net9.0::Jcg.Domain.Core.Tests.ValueObjects.IntervalTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=834778c5_002D86c2_002D4870_002D8a97_002Dacd3a7776c74/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PositiveIntegerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bb35bf73_002D9a9a_002D4900_002D92ce_002De603c733c83a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
