@@ -5,6 +5,6 @@ namespace Jcg.Domain.Core.Dispatcher
 {
     public interface IDomainEventHandler<TDomainEvent> where TDomainEvent : IDomainEvent
     {
-        Task HandlerAsync(TDomainEvent domainEvent);
+        Task HandleAsync(TDomainEvent domainEvent);
     }
 }

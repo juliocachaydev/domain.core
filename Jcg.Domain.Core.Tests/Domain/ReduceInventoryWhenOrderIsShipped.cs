@@ -16,7 +16,7 @@ public class ReduceInventoryWhenOrderIsShipped : IDomainEventHandler<OrderShippe
         _db = db;
     }
     
-    public async Task HandlerAsync(OrderShipped domainEvent)
+    public async Task HandleAsync(OrderShipped domainEvent)
     {
         var inventoryFromQuery = await _db.Inventories.AsNoTracking()
             .Include(e=> e.Items).FirstAsync();

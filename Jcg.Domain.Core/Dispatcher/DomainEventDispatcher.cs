@@ -25,7 +25,7 @@ namespace Jcg.Domain.Core.Dispatcher
 
             foreach (var h in handlers)
             {
-                var method = h.GetType().GetMethod("HandlerAsync");
+                var method = h.GetType().GetMethod("HandleAsync");
                 if (method != null)
                 {
                     var task = (Task)method.Invoke(h, new object[] { domainEvent });
