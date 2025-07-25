@@ -27,6 +27,11 @@ namespace Jcg.Domain.Core.Domain
             }
         }
 
+        public void ClearDomainEvents()
+        {
+            _domainEvents.Clear();
+        }
+
         /// <summary>
         /// The IRepository calls this method before saving changes. Use it to validate invariants.
         /// If this method throws an exception, the repository will not commit the transaction.
