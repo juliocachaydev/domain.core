@@ -17,11 +17,11 @@ public static class DependencyInjection
         connection.Open();
 
         services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlite(connection)
-                       .ConfigureWarnings(warnings =>
-                           warnings.Ignore(RelationalEventId.PendingModelChangesWarning))
-            );
-        
+            options.UseSqlite(connection)
+                .ConfigureWarnings(warnings =>
+                    warnings.Ignore(RelationalEventId.PendingModelChangesWarning))
+        );
+
         services.AddRepository(
             sp => new DatabaseAdapter(sp.GetRequiredService<AppDbContext>()),
             Assembly.GetExecutingAssembly());

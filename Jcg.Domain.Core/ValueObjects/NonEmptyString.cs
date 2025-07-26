@@ -9,12 +9,11 @@ namespace Jcg.Domain.Core.ValueObjects;
 public record NonEmptyString
 {
     public string Value { get; }
+
     public NonEmptyString(string value)
     {
-        if (String.IsNullOrWhiteSpace(value))
-        {
+        if (string.IsNullOrWhiteSpace(value))
             throw new InvalidEntityStateException("Value cannot be empty nor whitespace.");
-        }
 
         Value = value.Trim();
     }
@@ -28,13 +27,13 @@ public record NonEmptyString
         var random = new Random();
         var result = new char[length];
 
-        for (int i = 0; i < length; i++)
-        {
-            result[i] = chars[random.Next(chars.Length)];
-        }
+        for (var i = 0; i < length; i++) result[i] = chars[random.Next(chars.Length)];
 
         return new NonEmptyString(new string(result));
     }
 
-    public override string ToString() => Value;
+    public override string ToString()
+    {
+        return Value;
+    }
 }

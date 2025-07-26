@@ -12,9 +12,8 @@ public static class ServiceProviderFactory
             .BuildServiceProvider();
 
         return serviceProvider;
-
     }
-    
+
     public static IServiceProvider Create(Action<IServiceCollection> configureServices)
     {
         var serviceCollection = new ServiceCollection();
@@ -25,6 +24,5 @@ public static class ServiceProviderFactory
             .BuildServiceProvider();
 
         return serviceProvider;
-
     }
 }

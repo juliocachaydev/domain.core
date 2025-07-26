@@ -17,7 +17,7 @@ public class DomainCoreTests
         return db.Orders.Include(e => e.Lines)
             .FirstOrDefault(x => x.Id == id);
     }
-    
+
     private Inventory? LoadInventoryFromDatabase(IServiceScope scope, Guid id)
     {
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -32,7 +32,7 @@ public class DomainCoreTests
         db.Orders.Add(order);
         db.SaveChanges();
     }
-    
+
     private void AddInventoryToDatabaseInDifferentScope(IServiceProvider sp, Inventory inventory)
     {
         using var scope = sp.CreateScope();
@@ -56,13 +56,13 @@ public class DomainCoreTests
     private IServiceScope GetRepository(IServiceProvider sp, out IRepository repository)
     {
         var scope = sp.CreateScope();
-        
+
         repository = scope.ServiceProvider.GetRequiredService<IRepository>();
 
         return scope;
     }
 
-    
+
     [Fact]
     public async Task CanAddAnEntity()
     {
@@ -80,9 +80,9 @@ public class DomainCoreTests
         await repository.CommitChangesAsync();
 
         // ***** ASSERT *****
-        
+
         var result = LoadOrderFromDatabaseInDifferentScope(sp, order.Id);
-        
+
         Assert.Equivalent(order, result);
     }
 
@@ -95,24 +95,23 @@ public class DomainCoreTests
         var sp = SetupServices();
 
         var order = new Order(Guid.NewGuid());
-        
+
         AddOrderToDatabaseInDifferentScope(sp, order);
-        
+
         using var scope = GetRepository(sp, out var repository);
-        
+
         // ***** ACT *****
-        
+
         var orderFromDb = await repository.LoadOrThrowAsync<Order>(order.Id);
         orderFromDb.AddLine(Guid.NewGuid(), 10);
         await repository.CommitChangesAsync();
 
         // ***** ASSERT *****
-        
+
         var result = LoadOrderFromDatabaseInDifferentScope(sp, order.Id);
-        
+
         // here is the line we added in the ACT section
         Assert.NotEmpty(result.Lines);
-        
     }
 
     [Fact]
@@ -121,11 +120,11 @@ public class DomainCoreTests
         var sp = SetupServices();
 
         var order = new Order(Guid.NewGuid());
-        
+
         AddOrderToDatabaseInDifferentScope(sp, order);
-        
+
         using var scope = GetRepository(sp, out var repository);
-        
+
         // ***** ACT *****
 
         await repository.RemoveAsync<Order>(order.Id);
@@ -134,16 +133,16 @@ public class DomainCoreTests
         // ***** ASSERT *****
 
         var result = LoadOrderFromDatabaseInDifferentScope(sp, order.Id);
-        
+
         // Was deleted
         Assert.Null(result);
     }
-    
+
     [Fact]
     public async Task RepositoryEnforcesInvariantsOnCommit()
     {
         // ***** ARRANGE *****
-        
+
         /*
          * Order has an invariant: Item Ids must be unique in the order.
          */
@@ -151,12 +150,12 @@ public class DomainCoreTests
         var sp = SetupServices();
 
         var order = new Order(Guid.NewGuid());
-        
+
         using var scope = GetRepository(sp, out var repository);
         var productId = Guid.NewGuid();
-        
+
         order.AddLine(productId, 10);
-        
+
         // ***** ACT *****
 
         // now, order is invalid because we are trying to add the same product again
@@ -172,12 +171,12 @@ public class DomainCoreTests
         Assert.NotNull(result);
         Assert.Matches("Duplicated product lines are not allowed.", result.Message);
     }
-    
+
     [Fact]
     public async Task ShipAnOrder_ReducesInventory()
     {
         // ***** ARRANGE *****
-        
+
         /*
          * Here we are showing the functionality of the domain event dispatcher. When we ship an order, the
          * inventory (a different aggregate) is reduced in the same transaction. This is done by the domain event:
@@ -191,7 +190,7 @@ public class DomainCoreTests
 
         var order = new Order(Guid.NewGuid());
         var productId = Guid.NewGuid();
-        
+
         // We will order 10 items of a product
         order.AddLine(productId, 10);
 
@@ -199,21 +198,21 @@ public class DomainCoreTests
         var inventory = new Inventory(Guid.NewGuid());
         inventory.AddItem(productId, 20);
         AddInventoryToDatabaseInDifferentScope(sp, inventory);
-        
+
         // ***** ACT *****
 
         // We ship the order so the inventory should automatically be updated via the OrderShipped domain event.
         order.ShipOrder();
 
-        
+
         await repository.AddAsync(order);
         await repository.CommitChangesAsync();
 
         // ***** ASSERT *****
 
         var inventoryFromDb = LoadInventoryFromDatabase(scope, inventory.Id);
-        
-        Assert.Equivalent(10, inventoryFromDb!.Items.First(x=> x.ProductId == productId).Quantity);
+
+        Assert.Equivalent(10, inventoryFromDb!.Items.First(x => x.ProductId == productId).Quantity);
     }
 
     [Fact]
@@ -228,7 +227,7 @@ public class DomainCoreTests
         AddOrderToDatabaseInDifferentScope(sp, order);
 
         using var scope = GetRepository(sp, out var repository);
-        
+
         // ***** ACT *****
 
         await repository.RemoveAsync<Order>(order.Id);
@@ -237,10 +236,9 @@ public class DomainCoreTests
         // ***** ASSERT *****
 
         var result = LoadOrderFromDatabaseInDifferentScope(sp, order.Id);
-        
+
         // was deleted
         Assert.Null(result);
-
     }
 
     [Fact]
@@ -251,7 +249,7 @@ public class DomainCoreTests
         var sp = SetupServices();
 
         using var scope = GetRepository(sp, out var repository);
-        
+
         // ***** ACT *****
 
         var result = await Record.ExceptionAsync(async () => await repository.LoadOrThrowAsync<Order>(Guid.NewGuid()));
@@ -274,7 +272,7 @@ public class DomainCoreTests
         AddOrderToDatabaseInDifferentScope(sp, order);
 
         using var scope = GetRepository(sp, out var repository);
-        
+
         // ***** ACT *****
 
         var result = await repository.LoadOrThrowAsync<Order>(order.Id);
@@ -292,7 +290,7 @@ public class DomainCoreTests
         var sp = SetupServices();
 
         using var scope = GetRepository(sp, out var repository);
-        
+
         // ***** ACT *****
 
         var result = await repository.LoadAsync<Order>(Guid.NewGuid());
@@ -301,7 +299,7 @@ public class DomainCoreTests
 
         Assert.Null(result);
     }
-    
+
     [Fact]
     public async Task Load_WhenEntityFound_ReturnsIt()
     {
@@ -314,7 +312,7 @@ public class DomainCoreTests
         AddOrderToDatabaseInDifferentScope(sp, order);
 
         using var scope = GetRepository(sp, out var repository);
-        
+
         // ***** ACT *****
 
         var result = await repository.LoadAsync<Order>(order.Id);

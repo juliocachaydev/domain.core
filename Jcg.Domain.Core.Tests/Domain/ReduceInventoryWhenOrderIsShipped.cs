@@ -15,18 +15,16 @@ public class ReduceInventoryWhenOrderIsShipped : IDomainEventHandler<OrderShippe
         _repository = repository;
         _db = db;
     }
-    
+
     public async Task HandleAsync(OrderShipped domainEvent)
     {
         var inventoryFromQuery = await _db.Inventories.AsNoTracking()
-            .Include(e=> e.Items).FirstAsync();
+            .Include(e => e.Items).FirstAsync();
 
         // tracked
         var inventory = await _repository.LoadOrThrowAsync<Inventory>(inventoryFromQuery.Id);
         foreach (var detail in domainEvent.ShipmentDetails)
-        {
             inventory.UpdateInventory(detail.ProductId, detail.Quantity);
-        }
 
         await _repository.CommitChangesAsync();
     }

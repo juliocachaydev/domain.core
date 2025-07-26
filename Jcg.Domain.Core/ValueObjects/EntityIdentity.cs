@@ -12,10 +12,7 @@ public record EntityIdentity
 
     public EntityIdentity(Guid value)
     {
-        if (value == Guid.Empty)
-        {
-            throw new InvalidEntityStateException("Entity identity cannot be empty.");
-        }
+        if (value == Guid.Empty) throw new InvalidEntityStateException("Entity identity cannot be empty.");
 
         Value = value;
     }
@@ -34,14 +31,11 @@ public record EntityIdentity
 
     public static EntityIdentity Parse(string value)
     {
-        if (TryParse(value, out var parsed))
-        {
-            return parsed;
-        }
+        if (TryParse(value, out var parsed)) return parsed;
         throw new InvalidEntityStateException($"Value: {value} cannot be parsed into a valid GUID.");
     }
 
-    public static EntityIdentity Random => new (Guid.NewGuid());
+    public static EntityIdentity Random => new(Guid.NewGuid());
 
     public override string ToString()
     {

@@ -1,10 +1,8 @@
-﻿namespace Jcg.Domain.Core.Domain
+﻿namespace Jcg.Domain.Core.Domain;
+
+/// <summary>
+/// A domain event, dispatched by aggregates in the domain model.
+/// </summary>
+public interface IDomainEvent
 {
-    /// <summary>
-    /// A domain event, dispatched by aggregates in the domain model.
-    /// </summary>
-    public interface IDomainEvent
-    {
-        
-    }
 }

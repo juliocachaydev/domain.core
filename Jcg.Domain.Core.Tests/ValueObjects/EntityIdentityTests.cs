@@ -12,7 +12,7 @@ public class EntityIdentityTests
         bool isEmpty, bool shouldThrow)
     {
         // ***** ARRANGE *****
-        
+
         // ***** ACT *****
 
         var result = Record.Exception(() => new EntityIdentity(isEmpty ? Guid.Empty : Guid.NewGuid()));
@@ -44,7 +44,7 @@ public class EntityIdentityTests
         var result = obj.ToString();
 
         // ***** ASSERT *****
-        
+
         Assert.Equal(idValue.ToString(), result);
     }
 
@@ -56,7 +56,7 @@ public class EntityIdentityTests
         var idValue = Guid.NewGuid().ToString();
 
         // ***** ACT & ASSERT *****
-        
+
         if (EntityIdentity.TryParse(idValue, out var result))
         {
             Assert.NotNull(result);
@@ -66,9 +66,8 @@ public class EntityIdentityTests
         {
             Assert.Fail("This should never happen because the value is a parsable GUID.");
         }
-        
     }
-    
+
     [Fact]
     public void TryParse_WhenNotParsable_ReturnsFalse_ObjectIsNull()
     {
@@ -77,24 +76,19 @@ public class EntityIdentityTests
         var idValue = "Not a GUID";
 
         // ***** ACT & ASSERT *****
-        
+
         if (EntityIdentity.TryParse(idValue, out var result))
-        {
             Assert.Fail("This should never happen because the value is not parsable to GUID");
-        }
         else
-        {
             Assert.Null(result);
-        }
-        
     }
-    
-    
+
+
     [Fact]
     public void Parse_WhenParsable_ReturnsObject()
     {
         // ***** ARRANGE *****
-        
+
         var idValue = Guid.NewGuid().ToString();
 
         // ***** ACT *****
@@ -102,10 +96,10 @@ public class EntityIdentityTests
         var result = EntityIdentity.Parse(idValue);
 
         // ***** ASSERT *****
-        
+
         Assert.Equal(idValue, result.Value.ToString());
     }
-    
+
     [Fact]
     public void Parse_WhenNotParsable_ThrowsException()
     {
@@ -133,7 +127,7 @@ public class EntityIdentityTests
         var values = Enumerable.Range(0, 100).Select(_ => EntityIdentity.Random).ToArray();
 
         // ***** ASSERT *****
-        
-       Assert.Equal(values.Length, values.Distinct().Count());
+
+        Assert.Equal(values.Length, values.Distinct().Count());
     }
 }

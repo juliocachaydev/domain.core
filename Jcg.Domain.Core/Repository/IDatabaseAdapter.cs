@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Jcg.Domain.Core.Repository
+namespace Jcg.Domain.Core.Repository;
+
+/// <summary>
+/// An abstraction of the database used to get tracked entities and commit tracked changes on a single transaction.
+/// </summary>
+public interface IDatabaseAdapter
 {
     /// <summary>
-    /// An abstraction of the database used to get tracked entities and commit tracked changes on a single transaction.
+    /// Gets tracked entities.
     /// </summary>
-    public interface IDatabaseAdapter
-    {
-        /// <summary>
-        /// Gets tracked entities.
-        /// </summary>
-        ICollection<object> GetTrackedEntities();
+    ICollection<object> GetTrackedEntities();
 
-        /// <summary>
-        /// commits tracked changes in a single transaction.
-        /// </summary>
-        Task SaveChangesAsync();
-    }
+    /// <summary>
+    /// commits tracked changes in a single transaction.
+    /// </summary>
+    Task SaveChangesAsync();
 }

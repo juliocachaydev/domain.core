@@ -9,9 +9,9 @@ public class PositiveIntegerTests
     public void Constructor_WhenValueIsGreaterThanZero_Creates()
     {
         // ***** ARRANGE *****
-      
+
         var validValues = Enumerable.Range(1, 1000).ToArray();
-        
+
         // for clarity, valid values for a positive integer are greater than zero
         Assert.True(validValues.All(v => v >= 1));
 
@@ -22,21 +22,21 @@ public class PositiveIntegerTests
             var result = new PositiveInteger(validValue);
 
             // ***** ASSERT *****
-            
+
             Assert.Equal(validValue, result.Value);
         }
     }
-    
+
     [Fact]
     public void Constructor_WhenValueLesserThanOrEqualToZero_Throws()
     {
         // ***** ARRANGE *****
-        
+
         // not all possible but sufficient
         var invalidValues = Enumerable.Range(-1000, 1001).ToArray();
         // For Clarity, invalid values include zero
         Assert.True(invalidValues.All(v => v <= 0));
-        
+
 
         foreach (var invalidValue in invalidValues)
         {
@@ -45,7 +45,7 @@ public class PositiveIntegerTests
             var result = Record.Exception(() => new PositiveInteger(invalidValue));
 
             // ***** ASSERT *****
-            
+
             Assert.NotNull(result);
             Assert.IsType<InvalidEntityStateException>(result);
         }
@@ -63,10 +63,10 @@ public class PositiveIntegerTests
             .ToArray();
 
         // ***** ASSERT *****
-        
-        
-        Assert.True(result.All(v=> v.Value >=10 && v.Value <= 1000));
-        
+
+
+        Assert.True(result.All(v => v.Value >= 10 && v.Value <= 1000));
+
         // Ensure they are different values, some duplicates are expected, but never all the same.
         Assert.NotEqual(result.Length, result.Distinct().Count());
     }
@@ -83,7 +83,7 @@ public class PositiveIntegerTests
         var result = sut.ToString();
 
         // ***** ASSERT *****
-        
+
         Assert.Equal("1", result);
     }
 }

@@ -12,10 +12,7 @@ public record PositiveInteger
 
     public PositiveInteger(int value)
     {
-        if (value < 1)
-        {
-            throw new InvalidEntityStateException("Value must be greater than zero.");
-        }
+        if (value < 1) throw new InvalidEntityStateException("Value must be greater than zero.");
 
         Value = value;
     }
@@ -26,12 +23,16 @@ public record PositiveInteger
     public static PositiveInteger Random(int min = 1, int max = 1000)
     {
         if (min < 1 || max < min)
-            throw new ArgumentOutOfRangeException("Invalid range for PositiveInteger. min must be at least 1, max must be greater than or equal to min.");
-    
+            throw new ArgumentOutOfRangeException(
+                "Invalid range for PositiveInteger. min must be at least 1, max must be greater than or equal to min.");
+
         var random = new Random();
-        int value = random.Next(min, max + 1);
+        var value = random.Next(min, max + 1);
         return new PositiveInteger(value);
     }
 
-    public override string ToString() => Value.ToString();
+    public override string ToString()
+    {
+        return Value.ToString();
+    }
 }

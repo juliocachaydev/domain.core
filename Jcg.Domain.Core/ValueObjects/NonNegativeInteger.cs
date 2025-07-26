@@ -12,10 +12,7 @@ public record NonNegativeInteger
 
     public NonNegativeInteger(int value)
     {
-        if (value < 0)
-        {
-            throw new InvalidEntityStateException("Value must be greater than or equal to zero.");
-        }
+        if (value < 0) throw new InvalidEntityStateException("Value must be greater than or equal to zero.");
 
         Value = value;
     }
@@ -26,12 +23,16 @@ public record NonNegativeInteger
     public static NonNegativeInteger Random(int min = 0, int max = 1000)
     {
         if (min < 0 || max < min)
-            throw new ArgumentOutOfRangeException("Invalid range for Non Negative Integer. min must be at least 0, max must be greater than or equal to min.");
-    
+            throw new ArgumentOutOfRangeException(
+                "Invalid range for Non Negative Integer. min must be at least 0, max must be greater than or equal to min.");
+
         var random = new Random();
-        int value = random.Next(min, max + 1);
+        var value = random.Next(min, max + 1);
         return new NonNegativeInteger(value);
     }
 
-    public override string ToString() => Value.ToString();
+    public override string ToString()
+    {
+        return Value.ToString();
+    }
 }

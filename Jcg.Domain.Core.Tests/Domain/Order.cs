@@ -10,7 +10,6 @@ public class Order : AggregateBase, IOrderRoot
 
     private Order()
     {
-        
     }
 
     public Order(Guid id)
@@ -24,22 +23,20 @@ public class Order : AggregateBase, IOrderRoot
         {
             ShipmentDetails = Lines.Select(x => new OrderShipped.ProductQuantity(x.ProductId, x.Quantity)).ToArray()
         };
-        
+
         AddDomainEvent(ev);
     }
 
     public void AddLine(Guid productId, int quantity)
     {
         var linesList = (Lines as List<OrderLine>)!;
-        linesList.Add(new(productId, quantity));
+        linesList.Add(new OrderLine(productId, quantity));
     }
 
     public override void AssertEntityStateIsValid()
     {
         if (Lines.GroupBy(x => x.ProductId).Any(g => g.Count() > 1))
-        {
             throw new InvalidOperationException("Duplicated product lines are not allowed.");
-        }
     }
 
     public class OrderLine
@@ -52,7 +49,6 @@ public class Order : AggregateBase, IOrderRoot
 
         private OrderLine()
         {
-            
         }
 
         public OrderLine(Guid productId, int quantity)

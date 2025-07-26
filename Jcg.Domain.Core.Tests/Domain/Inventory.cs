@@ -8,7 +8,6 @@ public class Inventory
 
     private Inventory()
     {
-        
     }
 
     public Inventory(Guid id)
@@ -24,13 +23,10 @@ public class Inventory
 
     public void UpdateInventory(Guid productId, int quantityShipped)
     {
-        var item = Items.FirstOrDefault(x=>
+        var item = Items.FirstOrDefault(x =>
             x.ProductId == productId);
 
-        if (item is not null)
-        {
-            item.Quantity -= quantityShipped;
-        }
+        if (item is not null) item.Quantity -= quantityShipped;
     }
 
     public class InventoryItem
@@ -40,10 +36,9 @@ public class Inventory
         public Guid ProductId { get; private set; }
 
         public int Quantity { get; set; }
-        
+
         private InventoryItem()
         {
-            
         }
 
         public InventoryItem(Guid productId, int quantity)

@@ -20,7 +20,7 @@ public class NonEmptyStringTests
         var result = Record.Exception(() => new NonEmptyString(value));
 
         // ***** ASSERT *****
-        
+
         if (shouldThrow)
         {
             Assert.NotNull(result);
@@ -34,7 +34,7 @@ public class NonEmptyStringTests
 
     [Theory]
     [InlineData("Hello", "Hello")]
-    [InlineData("    Hello World   ","Hello World")]
+    [InlineData("    Hello World   ", "Hello World")]
     public void Constructor_RemovesWhiteSpace(
         string value, string expectedValue)
     {
@@ -47,7 +47,7 @@ public class NonEmptyStringTests
         var result = sut.Value;
 
         // ***** ASSERT *****
-        
+
         Assert.Equal(expectedValue, result);
     }
 
@@ -64,7 +64,7 @@ public class NonEmptyStringTests
             .Select(_ => NonEmptyString.Random(200)).ToArray();
 
         // ***** ASSERT *****
-        
+
         Assert.Equal(100, result.Distinct().Count());
     }
 

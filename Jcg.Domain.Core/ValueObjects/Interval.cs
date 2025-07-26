@@ -6,7 +6,7 @@ namespace Jcg.Domain.Core.ValueObjects;
 /// <summary>
 /// Models an interval with a start and end value.
 /// </summary>
-public record Interval<T> where T: IComparable<T>
+public record Interval<T> where T : IComparable<T>
 {
     /// <summary>
     /// The Start Value of the Interval.
@@ -17,7 +17,7 @@ public record Interval<T> where T: IComparable<T>
     /// The End value of the interval. Is always greater than or equal to Start.
     /// </summary>
     public T End { get; }
-    
+
     /// <summary>
     /// Creates an Interval, asserting that the End value of the interval must be greater than or equal to the Start value.
     /// </summary>
@@ -29,9 +29,7 @@ public record Interval<T> where T: IComparable<T>
     public Interval(T start, T end)
     {
         if (end.CompareTo(start) < 0)
-        {
             throw new InvalidEntityStateException("End must be greater than or equal to start.");
-        }
 
         Start = start;
         End = end;
@@ -50,7 +48,7 @@ public record Interval<T> where T: IComparable<T>
         // Overlap occurs if the start of one interval is less than or equal to the end of the other, and vice versa
         return Start.CompareTo(other.End) <= 0 && End.CompareTo(other.Start) >= 0;
     }
-    
+
     /// <summary>
     /// Determines whether this interval overlaps exclusively with another interval.
     /// Exclusive overlap means the intervals share at least one value, but not at their endpoints.
@@ -64,7 +62,7 @@ public record Interval<T> where T: IComparable<T>
         // Exclusive overlap: intervals share values, but not at endpoints
         return Start.CompareTo(other.End) < 0 && End.CompareTo(other.Start) > 0;
     }
-    
+
     /// <summary>
     /// Maps the start and end values of this interval to a new type using the provided mapping function.
     /// </summary>
@@ -79,6 +77,4 @@ public record Interval<T> where T: IComparable<T>
         var newEnd = mapFunc(End);
         return new Interval<U>(newStart, newEnd);
     }
-    
-    
 }

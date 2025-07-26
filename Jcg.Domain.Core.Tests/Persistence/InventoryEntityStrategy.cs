@@ -13,13 +13,14 @@ public class InventoryEntityStrategy : IEntityStrategy
     {
         _db = db;
     }
-    
+
     private Inventory Cast<T>(T entity) where T : class
     {
         // This works because we know that the library will only call this method with an Order or IOrderRoot type, both
         // can be cast to Order.
         return (entity as Inventory)!;
     }
+
     public async Task AddAsync<TEntity>(TEntity entity) where TEntity : class
     {
         await _db.Inventories.AddAsync(Cast(entity));
@@ -28,12 +29,9 @@ public class InventoryEntityStrategy : IEntityStrategy
     public async Task<TEntity?> LoadAsync<TEntity>(Guid id) where TEntity : class
     {
         var result = await _db.Inventories
-            .Include(e=> e.Items)
+            .Include(e => e.Items)
             .FirstOrDefaultAsync(x => x.Id == id);
-        if (result is null)
-        {
-            return null;
-        }
+        if (result is null) return null;
 
         // this works because the IRepository will only call this method with an Inventory type.
         return result as TEntity;
