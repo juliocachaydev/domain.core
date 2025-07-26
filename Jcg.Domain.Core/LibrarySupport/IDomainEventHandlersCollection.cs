@@ -2,26 +2,25 @@
 
 namespace Jcg.Domain.Core.LibrarySupport
 {
+    /// <summary>
+    /// A storage for domain event handlers defined in the application. Internally, this is kept as a singleton service. The library scans the assemblies once,
+    /// then remembers the types of handlers it found so they can used later.
+    /// </summary>
     public interface IDomainEventHandlersCollection
     {
         /// <summary>
         /// Scans the provided assemblies for implementations of IEntityStrategy, and stores them internall so they are
-        /// available for later use. Call this method once, when your application starts. This class should be available as a singleton
+        /// available for later use. Call this method once, when your application starts. This class should be available as a singleton.
+        /// The assemblies are passed in the constructor of the implementing class.
         /// </summary>
-        /// <param name="sp">The service provider is necessary because the types for which an IEntityStrategy applies are defined as a property
-        /// (see Types array), to read that property this library must create an instance of that implementation</param>
-        /// <param name="assembliesToScan"></param>
-        /// <exception cref="NotImplementedException"></exception>
         void ScanForHandlers();
 
         /// <summary>
-        /// Given a scope, this method creates an instance of the IEntityStrategy or throws an exception if the entityType does not
-        /// correspond to any of the IEntityStrategy found by the ScanForStrategies method.
+        /// Creates instances of the handlers for the given domain event. 
         /// </summary>
-        /// <param name="sp"></param>
-        /// <param name="entityType"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="factory">An abstraction to keep the implementation abnostic of the DI Container</param>
+        /// <param name="domainEvent">The domain event whose handlers will be instantiated</param>
+        /// <returns>The handler instances</returns>
         object[] CreateHandlers(IEntityFactoryAdapter factory, IDomainEvent domainEvent);
     }
 }

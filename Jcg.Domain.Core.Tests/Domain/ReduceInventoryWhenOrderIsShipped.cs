@@ -22,12 +22,12 @@ public class ReduceInventoryWhenOrderIsShipped : IDomainEventHandler<OrderShippe
             .Include(e=> e.Items).FirstAsync();
 
         // tracked
-        var inventory = await _repository.LoadOrThrow<Inventory>(inventoryFromQuery.Id);
+        var inventory = await _repository.LoadOrThrowAsync<Inventory>(inventoryFromQuery.Id);
         foreach (var detail in domainEvent.ShipmentDetails)
         {
             inventory.UpdateInventory(detail.ProductId, detail.Quantity);
         }
 
-        await _repository.CommitChanges();
+        await _repository.CommitChangesAsync();
     }
 }

@@ -3,7 +3,10 @@ using Jcg.Domain.Core.Repository;
 
 namespace Jcg.Domain.Core.Dispatcher
 {
-    public static class DomainEventDispatcherFactory
+    /// <summary>
+    /// Creates instances of <see cref="IDomainEventDispatcher"/>.
+    /// </summary>
+    internal static class DomainEventDispatcherFactory
     {
         public static IDomainEventDispatcher Create(
             IDomainEventHandlersCollection domainEventHandlersCollection,

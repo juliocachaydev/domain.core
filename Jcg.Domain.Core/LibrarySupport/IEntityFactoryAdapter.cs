@@ -8,9 +8,11 @@ namespace Jcg.Domain.Core.LibrarySupport
     /// </summary>
     public interface IEntityFactoryAdapter
     {
-        /*
-         * I needed to use an adapter so this lirary can be implemented in netStandard, the IServiceProvider.CreateScope is not available in netStandard.
-         */
+        /// <summary>
+        /// Creates an Scoped instance of a type, resolving its dependencies from the DI Container.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         object? Create(Type type);
     }
 }

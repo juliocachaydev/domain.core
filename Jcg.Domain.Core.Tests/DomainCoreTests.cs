@@ -76,8 +76,8 @@ public class DomainCoreTests
 
         // ***** ACT *****
 
-        await repository.Add(order);
-        await repository.CommitChanges();
+        await repository.AddAsync(order);
+        await repository.CommitChangesAsync();
 
         // ***** ASSERT *****
         
@@ -102,9 +102,9 @@ public class DomainCoreTests
         
         // ***** ACT *****
         
-        var orderFromDb = await repository.LoadOrThrow<Order>(order.Id);
+        var orderFromDb = await repository.LoadOrThrowAsync<Order>(order.Id);
         orderFromDb.AddLine(Guid.NewGuid(), 10);
-        await repository.CommitChanges();
+        await repository.CommitChangesAsync();
 
         // ***** ASSERT *****
         
@@ -128,8 +128,8 @@ public class DomainCoreTests
         
         // ***** ACT *****
 
-        await repository.Remove<Order>(order.Id);
-        await repository.CommitChanges();
+        await repository.RemoveAsync<Order>(order.Id);
+        await repository.CommitChangesAsync();
 
         // ***** ASSERT *****
 
@@ -163,9 +163,9 @@ public class DomainCoreTests
         order.AddLine(productId, 20);
 
         // No exception yet, until we commit.
-        await repository.Add(order);
+        await repository.AddAsync(order);
 
-        var result = await Record.ExceptionAsync(async () => await repository.CommitChanges());
+        var result = await Record.ExceptionAsync(async () => await repository.CommitChangesAsync());
 
         // ***** ASSERT *****
 
@@ -206,8 +206,8 @@ public class DomainCoreTests
         order.ShipOrder();
 
         
-        await repository.Add(order);
-        await repository.CommitChanges();
+        await repository.AddAsync(order);
+        await repository.CommitChangesAsync();
 
         // ***** ASSERT *****
 
@@ -231,8 +231,8 @@ public class DomainCoreTests
         
         // ***** ACT *****
 
-        await repository.Remove<Order>(order.Id);
-        await repository.CommitChanges();
+        await repository.RemoveAsync<Order>(order.Id);
+        await repository.CommitChangesAsync();
 
         // ***** ASSERT *****
 
@@ -254,7 +254,7 @@ public class DomainCoreTests
         
         // ***** ACT *****
 
-        var result = await Record.ExceptionAsync(async () => await repository.LoadOrThrow<Order>(Guid.NewGuid()));
+        var result = await Record.ExceptionAsync(async () => await repository.LoadOrThrowAsync<Order>(Guid.NewGuid()));
 
         // ***** ASSERT *****
 
@@ -277,7 +277,7 @@ public class DomainCoreTests
         
         // ***** ACT *****
 
-        var result = await repository.LoadOrThrow<Order>(order.Id);
+        var result = await repository.LoadOrThrowAsync<Order>(order.Id);
 
         // ***** ASSERT *****
 
@@ -295,7 +295,7 @@ public class DomainCoreTests
         
         // ***** ACT *****
 
-        var result = await repository.Load<Order>(Guid.NewGuid());
+        var result = await repository.LoadAsync<Order>(Guid.NewGuid());
 
         // ***** ASSERT *****
 
@@ -317,7 +317,7 @@ public class DomainCoreTests
         
         // ***** ACT *****
 
-        var result = await repository.Load<Order>(order.Id);
+        var result = await repository.LoadAsync<Order>(order.Id);
 
         // ***** ASSERT *****
 

@@ -20,12 +20,12 @@ public class InventoryEntityStrategy : IEntityStrategy
         // can be cast to Order.
         return (entity as Inventory)!;
     }
-    public async Task Add<TEntity>(TEntity entity) where TEntity : class
+    public async Task AddAsync<TEntity>(TEntity entity) where TEntity : class
     {
         await _db.Inventories.AddAsync(Cast(entity));
     }
 
-    public async Task<TEntity?> Load<TEntity>(Guid id) where TEntity : class
+    public async Task<TEntity?> LoadAsync<TEntity>(Guid id) where TEntity : class
     {
         var result = await _db.Inventories
             .Include(e=> e.Items)
@@ -39,7 +39,7 @@ public class InventoryEntityStrategy : IEntityStrategy
         return result as TEntity;
     }
 
-    public void Remove<TEntity>(TEntity entity) where TEntity : class
+    public void RemoveAsync<TEntity>(TEntity entity) where TEntity : class
     {
         var cast = Cast(entity);
         _db.Inventories.Remove(cast);

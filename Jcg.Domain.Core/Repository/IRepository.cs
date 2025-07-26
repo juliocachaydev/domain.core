@@ -15,27 +15,27 @@ namespace Jcg.Domain.Core.Repository
         /// <summary>
         /// Adds an aggregate but does not commit it.
         /// </summary>
-        Task Add<T>(T entity) where T : class;
+        Task AddAsync<T>(T entity) where T : class;
 
         /// <summary>
         /// Loads an aggregate by Id. If the aggregate does not exist, returns null. Tracks changes.
         /// </summary>
-        Task<T?> Load<T>(Guid id) where T : class;
+        Task<T?> LoadAsync<T>(Guid id) where T : class;
 
         // <summary>
         /// Loads an aggregate by Id. If the aggregate does not exist, throws an exception. Tracks changes
         /// </summary>
-        Task<T> LoadOrThrow<T>(Guid id) where T : class;
+        Task<T> LoadOrThrowAsync<T>(Guid id) where T : class;
 
         /// <summary>
         /// Removes an aggregate by Id. If the aggregate does not exist, does nothing. Does not commit changes.
         /// </summary>
-        Task Remove<T>(Guid id) where T : class;
+        Task RemoveAsync<T>(Guid id) where T : class;
 
         /// <summary>
         /// Commits changes in a single transaction.
         /// </summary>
-        Task CommitChanges();
+        Task CommitChangesAsync();
 
         internal class Imp : IRepository
         {
@@ -59,16 +59,16 @@ namespace Jcg.Domain.Core.Repository
 
             private IEntityStrategy CreateStrategy(Type entityType) => _strategyCollection.CreateStrategyOrThrow(_entityFactoryAdapter, entityType);
             
-            public async Task Add<T>(T entity) where T : class
+            public async Task AddAsync<T>(T entity) where T : class
             {
-                await CreateStrategy(typeof(T)).Add(entity);
+                await CreateStrategy(typeof(T)).AddAsync(entity);
             }
 
-            public async Task<T?> Load<T>(Guid id) where T : class
+            public async Task<T?> LoadAsync<T>(Guid id) where T : class
             {
                 var s = CreateStrategy(typeof(T));
             
-                var result = await s.Load<T>(id);
+                var result = await s.LoadAsync<T>(id);
 
                 if (result is null)
                 {
@@ -79,9 +79,9 @@ namespace Jcg.Domain.Core.Repository
 
             }
 
-            public async Task<T> LoadOrThrow<T>(Guid id) where T : class
+            public async Task<T> LoadOrThrowAsync<T>(Guid id) where T : class
             {
-                var result = await Load<T>(id);
+                var result = await LoadAsync<T>(id);
 
                 if (result is null)
                 {
@@ -91,20 +91,20 @@ namespace Jcg.Domain.Core.Repository
 
             }
 
-            public async Task Remove<T>(Guid id) where T : class
+            public async Task RemoveAsync<T>(Guid id) where T : class
             {
                 var s = CreateStrategy(typeof(T));
 
-                var entity = await Load<T>(id);
+                var entity = await LoadAsync<T>(id);
 
                 if (entity != null)
                 {
-                    s.Remove(entity);
+                    s.RemoveAsync(entity);
                 }
 
             }
 
-            public async Task CommitChanges()
+            public async Task CommitChangesAsync()
             {
                 // For aggregates, we dispatch domain events, and then assert invariants.
                 var aggregates = _databaseAdapter.GetTrackedEntities()

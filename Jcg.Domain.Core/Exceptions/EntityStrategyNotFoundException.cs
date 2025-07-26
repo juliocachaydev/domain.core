@@ -2,6 +2,9 @@
 
 namespace Jcg.Domain.Core.Exceptions
 {
+    /// <summary>
+    /// Tried to load an entity but there was no IEntityStrategy implementation found for the requested entity type.
+    /// </summary>
     public class EntityStrategyNotFoundException : Exception
     {
         public EntityStrategyNotFoundException(Type requestedEntityType)

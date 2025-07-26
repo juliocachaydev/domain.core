@@ -20,16 +20,16 @@ namespace Jcg.Domain.Core.Repository
         /// <summary>
         /// Adds an aggregate but does not commit it.
         /// </summary>
-        Task Add<TEntity>(TEntity entity) where TEntity : class;
+        Task AddAsync<TEntity>(TEntity entity) where TEntity : class;
 
         /// <summary>
         /// Loads an aggregate by Id. If the aggregate does not exist, returns null. Tracks changes.
         /// </summary>
-        Task<TEntity?> Load<TEntity>(Guid id) where TEntity : class;
+        Task<TEntity?> LoadAsync<TEntity>(Guid id) where TEntity : class;
 
         /// <summary>
         /// Removes an aggregate by Id. If the aggregate does not exist, does nothing. Does not commit changes.
         /// </summary>
-        void Remove<TEntity>(TEntity entity) where TEntity : class;
+        void RemoveAsync<TEntity>(TEntity entity) where TEntity : class;
     }
 }

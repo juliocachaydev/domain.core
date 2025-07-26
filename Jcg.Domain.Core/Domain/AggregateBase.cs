@@ -14,11 +14,19 @@ namespace Jcg.Domain.Core.Domain
         
         public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
         
+        /// <summary>
+        /// Adds a domain evnet, which will be dispatched by the repository when you call CommitChanges but
+        /// before the transaction is committed.
+        /// </summary>
+        /// <param name="ev"></param>
         public void AddDomainEvent(IDomainEvent ev)
         {
             _domainEvents.Add(ev);
         }
         
+        /// <summary>
+        /// Removes a domain event. This is called by the Library after a domain event has been dispatched so it can't be dispatched again.
+        /// </summary>
         public void RemoveDomainEvent(IDomainEvent ev)
         {
             if (_domainEvents.Contains(ev))
@@ -27,6 +35,10 @@ namespace Jcg.Domain.Core.Domain
             }
         }
 
+        /// <summary>
+        /// Clears all domain events. This is normally used for testing. In some cases, in the context of integration tests, you would use this method
+        /// to prevent side effects caused by domain events.
+        /// </summary>
         public void ClearDomainEvents()
         {
             _domainEvents.Clear();

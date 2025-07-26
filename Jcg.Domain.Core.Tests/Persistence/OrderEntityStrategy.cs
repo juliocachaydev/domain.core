@@ -20,12 +20,12 @@ public class OrderEntityStrategy : IEntityStrategy
         // can be cast to Order.
         return (entity as Order)!;
     }
-    public async Task Add<TEntity>(TEntity entity) where TEntity : class
+    public async Task AddAsync<TEntity>(TEntity entity) where TEntity : class
     {
         await _db.Orders.AddAsync(Cast(entity));
     }
 
-    public async Task<TEntity?> Load<TEntity>(Guid id) where TEntity : class
+    public async Task<TEntity?> LoadAsync<TEntity>(Guid id) where TEntity : class
     {
         var result = await _db.Orders
             .Include(e=> e.Lines)
@@ -39,7 +39,7 @@ public class OrderEntityStrategy : IEntityStrategy
         return result as TEntity;
     }
 
-    public void Remove<TEntity>(TEntity entity) where TEntity : class
+    public void RemoveAsync<TEntity>(TEntity entity) where TEntity : class
     {
         var cast = Cast(entity);
         _db.Orders.Remove(cast);
