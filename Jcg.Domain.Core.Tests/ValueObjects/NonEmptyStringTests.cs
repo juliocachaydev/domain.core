@@ -1,6 +1,5 @@
 ﻿using Jcg.Domain.Core.Exceptions;
 using Jcg.Domain.Core.ValueObjects;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Utilities;
 
 namespace Jcg.Domain.Core.Tests.ValueObjects;
 

@@ -59,6 +59,7 @@ public class NonNegativeIntegerTests
         // ***** ACT *****
 
         var result = Enumerable.Range(0, 10_000)
+            // ReSharper disable once RedundantArgumentDefaultValue
             .Select(_ => NonNegativeInteger.Random(10, 1000))
             .ToArray();
 

@@ -59,6 +59,7 @@ public class PositiveIntegerTests
         // ***** ACT *****
 
         var result = Enumerable.Range(0, 10_000)
+            // ReSharper disable once RedundantArgumentDefaultValue
             .Select(_ => PositiveInteger.Random(10, 1000))
             .ToArray();
 

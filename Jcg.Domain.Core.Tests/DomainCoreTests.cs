@@ -10,7 +10,7 @@ namespace Jcg.Domain.Core.Tests;
 
 public class DomainCoreTests
 {
-    private Order? LoadOrderFromDatabaseInDifferentScope(IServiceProvider sp, Guid id)
+    private static Order? LoadOrderFromDatabaseInDifferentScope(IServiceProvider sp, Guid id)
     {
         using var scope = sp.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -18,14 +18,14 @@ public class DomainCoreTests
             .FirstOrDefault(x => x.Id == id);
     }
 
-    private Inventory? LoadInventoryFromDatabase(IServiceScope scope, Guid id)
+    private static Inventory? LoadInventoryFromDatabase(IServiceScope scope, Guid id)
     {
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
         return db.Inventories.Include(e => e.Items)
             .FirstOrDefault(x => x.Id == id);
     }
 
-    private void AddOrderToDatabaseInDifferentScope(IServiceProvider sp, Order order)
+    private static void AddOrderToDatabaseInDifferentScope(IServiceProvider sp, Order order)
     {
         using var scope = sp.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -33,7 +33,7 @@ public class DomainCoreTests
         db.SaveChanges();
     }
 
-    private void AddInventoryToDatabaseInDifferentScope(IServiceProvider sp, Inventory inventory)
+    private static void AddInventoryToDatabaseInDifferentScope(IServiceProvider sp, Inventory inventory)
     {
         using var scope = sp.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -111,7 +111,7 @@ public class DomainCoreTests
         var result = LoadOrderFromDatabaseInDifferentScope(sp, order.Id);
 
         // here is the line we added in the ACT section
-        Assert.NotEmpty(result.Lines);
+        Assert.NotEmpty(result!.Lines);
     }
 
     [Fact]

@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.Design.Serialization;
-using Jcg.Domain.Core.Exceptions;
+﻿using Jcg.Domain.Core.Exceptions;
 using Jcg.Domain.Core.ValueObjects;
 
 namespace Jcg.Domain.Core.Tests.ValueObjects;

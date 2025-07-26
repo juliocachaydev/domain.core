@@ -22,7 +22,7 @@ public class EntityIdentityTests
         if (shouldThrow)
         {
             Assert.IsType<InvalidEntityStateException>(result);
-            Assert.Matches("empty", result?.Message);
+            Assert.Matches("empty", result.Message);
         }
         else
         {
@@ -60,7 +60,7 @@ public class EntityIdentityTests
         if (EntityIdentity.TryParse(idValue, out var result))
         {
             Assert.NotNull(result);
-            Assert.Equal(idValue.ToString(), result.Value.ToString());
+            Assert.Equal(idValue, result.Value.ToString());
         }
         else
         {
@@ -114,7 +114,7 @@ public class EntityIdentityTests
         // ***** ASSERT *****
 
         Assert.IsType<InvalidEntityStateException>(result);
-        Assert.Matches("cannot be parsed", result?.Message);
+        Assert.Matches("cannot be parsed", result.Message);
     }
 
     [Fact]
