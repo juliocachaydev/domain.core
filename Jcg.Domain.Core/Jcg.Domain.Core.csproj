@@ -4,7 +4,7 @@
         <PackageId>Jcg.Domain.Core</PackageId>
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <Version>1.1.0</Version>
+        <Version>1.1.1</Version>
         <Authors>Julio Cachay G.</Authors>
         <Company>Julio Cachay Developer</Company>
         <Description>A C# library that abstracts a Domain layer: An aggregate, a Repository, a domain event dispatcher and more.</Description>
@@ -16,6 +16,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <Copyright>Copyright © 2025 Julio Cachay G.</Copyright>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -25,6 +26,7 @@
 
     <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath=""/>
+        <None Include="icon.png" Pack="true" PackagePath="\" />
     </ItemGroup>
 
     <PropertyGroup>
